@@ -1,6 +1,6 @@
 # riotjs-playground
 
-> experimenting [riotjs](http://riotjs.com/)
+> experimenting [riotjs](http://riotjs.com/) with PouchDB for storage
 
 [Demo](http://signalkuppe.github.io/riotjs-playground/)
 
