@@ -38,8 +38,10 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-1 col-md-2">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                        <button if="{ id }" class="btn btn-danger" onclick="{ delete }">Delete</button>
+                        <ul class="list-unstyled list-inline">
+                            <li><button type="submit" class="btn btn-primary">Save</button></li>
+                            <li><button if="{ id }" class="btn btn-danger" onclick="{ delete }">Delete</button></li>
+                        </ul>                        
                     </div>
                 </div>
             </form>
