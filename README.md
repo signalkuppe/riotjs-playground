@@ -1,6 +1,6 @@
 # riotjs-playground
 
-> experimenting riotjs
+> experimenting [riotjs](http://riotjs.com/)
 
 [Demo](http://signalkuppe.github.io/riotjs-playground/)
 
