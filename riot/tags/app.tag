@@ -19,7 +19,7 @@
 
         riot.route(function (collection, id, action) {
 
-            var page = collection === ''? 'home' : collection;
+            var page = collection === '' ? 'home' : collection;
 
             self.page = page;
             self.update();
@@ -43,9 +43,8 @@
                     riot.mount('#view','form-post',{id:id});
             }
 
-            if(page === 'ajax') {
+            if(page === 'ajax')
                 riot.mount('#view','ajax');
-            }
         })
     </script>
 </app>

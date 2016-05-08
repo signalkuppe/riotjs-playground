@@ -22,6 +22,7 @@
         }
     </style>
     <script>
+
         var self = this;
             self.id = this.opts.__proto__.id; // better way the get option passed with mount?
 

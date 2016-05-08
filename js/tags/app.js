@@ -7,7 +7,7 @@ riot.tag2('app', '<navbar page="{page}"></navbar><div class="container"><div cla
 
         riot.route(function (collection, id, action) {
 
-            var page = collection === ''? 'home' : collection;
+            var page = collection === '' ? 'home' : collection;
 
             self.page = page;
             self.update();
@@ -29,8 +29,7 @@ riot.tag2('app', '<navbar page="{page}"></navbar><div class="container"><div cla
                     riot.mount('#view','form-post',{id:id});
             }
 
-            if(page === 'ajax') {
+            if(page === 'ajax')
                 riot.mount('#view','ajax');
-            }
         })
 });
