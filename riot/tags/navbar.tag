@@ -1,4 +1,4 @@
-<!-- Static navbdar -->
+<!-- Static navbar -->
 <navbar>
 
     <nav class="navbar navbar-default navbar-static-top">
@@ -24,5 +24,3 @@
     </script>
 
 </navbar>
-
-
