@@ -22,5 +22,4 @@
         this.mixin('CONSTANTS')
         this.appname = this.strings.appname;
     </script>
-
 </navbar>
