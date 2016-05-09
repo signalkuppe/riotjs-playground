@@ -24,24 +24,28 @@
         </div>
     </div>
     <script>
-        var self = this;
+        this.mixin('CONSTANTS');
+        var tag = this;
         var request = $.ajax({
             url: 'http://jsonplaceholder.typicode.com/posts',
             method: 'GET',
             dataType: 'json',
             beforeSend: function() {
-                self.progress = true;
+                tag.progress = true;
             }
         });
         request.done(function(response) {
-            if (response.length) self.posts = response.splice(0, 10);
+            if (response.length)
+              tag.posts = response.splice(0, 10);
+            riot.mount('alert',{type:'success',message: tag.messages.ajax_success })
         });
         request.fail(function(jqXHR, textStatus) {
-            self.error = true;
+            tag.error = true;
+            riot.mount('alert',{type:'danger',message: tag.messages.ajax_error })
         });
         request.always(function(response) {
-            self.progress = false;
-            self.update();
+            tag.progress = false;
+            tag.update();
         });
     </script>
 </ajax>

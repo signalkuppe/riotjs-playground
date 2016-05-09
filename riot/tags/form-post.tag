@@ -41,39 +41,35 @@
                         <ul class="list-unstyled list-inline">
                             <li><button type="submit" class="btn btn-primary">Save</button></li>
                             <li><button if="{ id }" class="btn btn-danger" onclick="{ delete }">Delete</button></li>
-                        </ul>                        
+                        </ul>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <div class="row" if="{error}">
-        <div class="col-md-offset-1 col-md-10">
-            <div class="alert alert-danger">Title and body are required</div>
-        </div>
-    </div>
     <script>
-        var self = this;
-        self.error = false;
-        self.id = this.opts.__proto__.id; // better way the get option passed with mount?
+        this.mixin('CONSTANTS');
+        var tag = this;
+        tag.error = false;
+        tag.id = this.opts.__proto__.id; // better way the get option passed with mount?
         // edit, update the values
-        if (self.id) {
+        if (tag.id) {
             // get the post
-            db.get(self.id).then(function(doc) {
-                self.post = doc;
-                self.update();
+            db.get(tag.id).then(function(doc) {
+                tag.post = doc;
+                tag.update();
             }).catch(function(err) {
                 console.log(err);
             });
         }
         // save
-        self.newPost = function() {
-                var title = self.title.value,
-                    body = self.body.value;
+        tag.newPost = function() {
+                var title = tag.title.value,
+                    body = tag.body.value;
 
                 // validation
                 if (title === '' || body === '') {
-                    self.error = true;
+                    riot.mount('alert',{type:'danger',message: tag.messages.post_validation_error })
                     return;
                 }
 
@@ -84,16 +80,17 @@
                 }
 
                 //edit
-                if (self.id) {
-                    db.get(self.id).then(function(doc) {
+                if (tag.id) {
+                    db.get(tag.id).then(function(doc) {
                         return db.put({
-                            _id: self.id,
+                            _id: tag.id,
                             _rev: doc._rev,
-                            title: self.title.value,
-                            body: self.body.value
+                            title: tag.title.value,
+                            body: tag.body.value
                         });
                     }).then(function(response) {
-                        riot.route('post/' + self.id)
+                        riot.route('post/' + tag.id)
+                        riot.mount('alert',{type:'success',message: tag.messages.post_updated })
                     }).catch(function(err) {
                         console.log(err);
                     });
@@ -103,6 +100,7 @@
                 else {
                     db.put(post).then(function(response) {
                         riot.route('post/' + post._id)
+                        riot.mount('alert',{type:'success',message: tag.messages.post_saved })
                     }).catch(function(err) {
                         console.log(err);
                     });
@@ -110,13 +108,14 @@
             }
 
             // delete
-            self.delete = function() {
+            tag.delete = function() {
                 if (confirm('Are you sure ?')) {
                     // delete the post
-                    db.get(self.id).then(function(doc) {
+                    db.get(tag.id).then(function(doc) {
                         return db.remove(doc);
                     }).then(function(result) {
                         riot.route('posts')
+                        riot.mount('alert',{type:'success',message: tag.messages.post_deleted })
                     }).catch(function(err) {
                         console.log(err);
                     });

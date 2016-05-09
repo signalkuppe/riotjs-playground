@@ -23,20 +23,20 @@
     </style>
     <script>
 
-        var self = this;
-            self.id = this.opts.__proto__.id; // better way the get option passed with mount?
+        var tag = this;
+            tag.id = this.opts.__proto__.id; // better way the get option passed with mount?
 
         // get the post
-        db.get(self.id).then(function (doc) {
-          self.post = doc;
-          self.update();
+        db.get(tag.id).then(function (doc) {
+          tag.post = doc;
+          tag.update();
         }).catch(function (err) {
           console.log(err);
         });
 
         // edit
-        self.edit = function () {
-            riot.route('post/'+self.id+'/edit')
+        tag.edit = function () {
+            riot.route('post/'+tag.id+'/edit')
         }
 
     </script>

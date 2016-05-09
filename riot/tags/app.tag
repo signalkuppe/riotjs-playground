@@ -11,7 +11,7 @@
 
     <script>
 
-        var self = this;
+        var tag = this;
 
         // immediately start the router with the current state
         riot.route.start(stop);
@@ -21,8 +21,8 @@
 
             var page = collection === '' ? 'home' : collection;
 
-            self.page = page;
-            self.update();
+            tag.page = page;
+            tag.update();
 
             // routing logics
 

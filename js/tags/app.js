@@ -1,6 +1,6 @@
 riot.tag2('app', '<navbar page="{page}"></navbar><div class="container"><div class="row"><div class="col-md-12"><div id="view"></div></div></div></div>', '', '', function(opts) {
 
-        var self = this;
+        var tag = this;
 
         riot.route.start(stop);
         riot.route.start(true);
@@ -9,8 +9,8 @@ riot.tag2('app', '<navbar page="{page}"></navbar><div class="container"><div cla
 
             var page = collection === '' ? 'home' : collection;
 
-            self.page = page;
-            self.update();
+            tag.page = page;
+            tag.update();
 
             if(page === 'home')
                 riot.mount('#view','home');

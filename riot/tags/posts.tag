@@ -25,30 +25,30 @@
     <!-- no posts -->
     <script>
         this.mixin('FILTERS')
-        var self = this;
-        self.posts = [];
+        var tag = this;
+        tag.posts = [];
 
         // get all the posts
         db.allDocs({
           include_docs: true,
           attachments: true
         }).then(function (result) {
-          self.posts = result.rows.map(function(r){ return r.doc;});
-          self.update();
+          tag.posts = result.rows.map(function(r){ return r.doc;});
+          tag.update();
         }).catch(function (err) {
           console.log(err);
         });
 
         // delete posts
-        self.delete = function () {
+        tag.delete = function () {
             if(confirm('Are you sure ?')) {
                 db.allDocs().then(function (result) {
                   return Promise.all(result.rows.map(function (row) {
                     return db.remove(row.id, row.value.rev);
                   }));
                 }).then(function () {
-                  self.posts = [];
-                  self.update();
+                  tag.posts = [];
+                  tag.update();
                 }).catch(function (err) {
                   console.log(error)
                 });
